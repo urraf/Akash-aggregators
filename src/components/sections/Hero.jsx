@@ -48,7 +48,6 @@ export default function Hero() {
                 background: 'rgba(245,158,11,0.05)',
                 display: 'inline-block',
               }}>
-                ◆ NISM CERTIFIED · NISM-202400188719
               </span>
             </motion.div>
 
