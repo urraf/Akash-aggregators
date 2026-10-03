@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { AreaChart, Area, ResponsiveContainer } from 'recharts';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Handshake } from 'lucide-react';
 import LiveStockSearch from './LiveStockSearch';
 
 const portfolioData = [
@@ -25,6 +25,14 @@ export default function Hero() {
     document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleBecomePartner = () => {
+    document.querySelector('#contact-form')?.scrollIntoView({ behavior: 'smooth' });
+    window.dispatchEvent(new CustomEvent('selectDSA'));
+    setTimeout(() => {
+      window.dispatchEvent(new CustomEvent('selectDSA'));
+    }, 600);
+  };
+
   return (
     <section id="home" className="section-padding" style={{ position: 'relative', overflow: 'hidden', minHeight: '80vh', display: 'flex', alignItems: 'center' }} aria-label="Hero">
       {/* Background effects */}
@@ -36,20 +44,7 @@ export default function Hero() {
         <div className="hero-grid">
           {/* Left Content */}
           <motion.div variants={containerVariants} initial="hidden" animate="visible" style={{ textAlign: 'center' }} className="hero-text-col">
-            {/* NISM Badge */}
-            <motion.div variants={itemVariants} style={{ marginBottom: '24px' }}>
-              <span className="font-data" style={{
-                fontSize: '0.6875rem',
-                color: '#F59E0B',
-                border: '1px solid rgba(245,158,11,0.3)',
-                padding: '6px 14px',
-                borderRadius: '9999px',
-                letterSpacing: '0.1em',
-                background: 'rgba(245,158,11,0.05)',
-                display: 'inline-block',
-              }}>
-              </span>
-            </motion.div>
+
 
             {/* H1 */}
             <motion.h1 variants={itemVariants} className="text-hero" style={{ marginBottom: '24px' }}>
@@ -73,7 +68,7 @@ export default function Hero() {
             </motion.p>
 
             {/* CTAs */}
-            <motion.div variants={itemVariants} style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '32px', alignItems: 'center' }} className="hero-cta-row">
+            <motion.div variants={itemVariants} className="hero-cta-row" style={{ display: 'flex', gap: '12px', marginBottom: '32px' }}>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
@@ -81,6 +76,14 @@ export default function Hero() {
                 className="btn-emerald"
               >
                 Start Your SIP Today <ArrowRight size={16} />
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={handleBecomePartner}
+                className="btn-gold"
+              >
+                Become a Partner <Handshake size={16} />
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}

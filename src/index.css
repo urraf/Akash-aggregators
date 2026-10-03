@@ -412,6 +412,35 @@ input[type="range"]::-moz-range-thumb {
   transform: scale(0.98);
 }
 
+/* Gold button */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #05061A;
+  padding: 0.75rem 1.75rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #FBBF24, #F59E0B, #D97706);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  box-shadow: 0 4px 15px -3px rgba(245, 158, 11, 0.4);
+}
+
+.btn-gold:hover {
+  box-shadow: 0 8px 25px -5px rgba(245, 158, 11, 0.6);
+  transform: scale(1.03);
+}
+
+.btn-gold:active {
+  transform: scale(0.98);
+}
+
 /* Outline button */
 .btn-outline {
   display: inline-flex;

@@ -168,7 +168,7 @@ export default function Navbar() {
       >
         <Handshake size={14} style={{ color: '#F59E0B' }} />
         <span className="font-data" style={{ fontSize: '0.7rem', color: '#F59E0B', letterSpacing: '0.08em' }}>
-          Become a Partner — Join as DSA
+          Become a Partner
         </span>
         <span style={{ fontSize: '0.7rem', color: '#F59E0B' }}>→</span>
       </div>
