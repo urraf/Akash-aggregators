@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, ExternalLink, Award, Send, CheckCircle, AlertCircle } from 'lucide-react';
 
-const serviceOptions = ['Top 5 Mutual Funds', 'Top 5 Life Insurance Plans', 'Top 5 Term Insurance Plans', 'Top 5 Health Insurance Plans', 'Top 5 Motor Insurance', 'Top 5 NPS Providers', 'Fixed Deposits', 'Loans', 'ITR Filing', 'Sell my car online', 'Buy a second hand car online near me', 'B2B Services', 'Other'];
+const serviceOptions = ['Top 5 Mutual Funds', 'Top 5 Life Insurance Plans', 'Top 5 Term Insurance Plans', 'Top 5 Health Insurance Plans', 'Top 5 Motor Insurance', 'Top 5 NPS Providers', 'Fixed Deposits', 'Loans', 'ITR Filing', 'Sell my car online', 'Buy a second hand car online near me', 'B2B Services', 'Become a DSA', 'Other'];
 const investmentRanges = ['Under ₹5,000/mo', '₹5,000–₹25,000/mo', '₹25,000–₹1L/mo', '₹1L+ or Lumpsum'];
 
 const inputStyle = {
@@ -13,6 +13,24 @@ const inputStyle = {
 
 export default function ContactSection() {
   const [status, setStatus] = useState(null);
+
+  useEffect(() => {
+    const handleSelectDSA = () => {
+      const serviceSelect = document.getElementById('service');
+      if (serviceSelect) {
+        serviceSelect.value = 'Become a DSA';
+        // Trigger a visual highlight on the select
+        serviceSelect.style.borderColor = '#F59E0B';
+        serviceSelect.style.boxShadow = '0 0 0 2px rgba(245,158,11,0.3)';
+        setTimeout(() => {
+          serviceSelect.style.borderColor = 'rgba(255,255,255,0.1)';
+          serviceSelect.style.boxShadow = 'none';
+        }, 2000);
+      }
+    };
+    window.addEventListener('selectDSA', handleSelectDSA);
+    return () => window.removeEventListener('selectDSA', handleSelectDSA);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -92,7 +110,7 @@ export default function ContactSection() {
 
           {/* Right — Contact Form */}
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}>
-            <form onSubmit={handleSubmit} className="glass" style={{ padding: '24px', borderRadius: '16px' }}>
+            <form id="contact-form" onSubmit={handleSubmit} className="glass" style={{ padding: '24px', borderRadius: '16px' }}>
               <input type="checkbox" name="botcheck" style={{ display: 'none' }} tabIndex="-1" autoComplete="off" />
 
               <div style={{ marginBottom: '20px' }}>

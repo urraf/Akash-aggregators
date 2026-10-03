@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Handshake } from 'lucide-react';
 import logo from '../../assets/logo.png';
 
 const navLinks = [
@@ -32,6 +32,16 @@ export default function Navbar() {
     e.preventDefault();
     setMobileOpen(false);
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleBecomePartner = (e) => {
+    e.preventDefault();
+    setMobileOpen(false);
+    document.querySelector('#contact-form')?.scrollIntoView({ behavior: 'smooth' });
+    // Dispatch event after a small delay to ensure section is visible
+    setTimeout(() => {
+      window.dispatchEvent(new CustomEvent('selectDSA'));
+    }, 600);
   };
 
   return (
@@ -85,16 +95,31 @@ export default function Navbar() {
 
           {/* Right side */}
           <div style={{ display: 'none' }} className="nav-right-desktop">
-            <span className="font-data" style={{
-              fontSize: '0.625rem',
-              color: '#10B981',
-              border: '1px solid rgba(16, 185, 129, 0.3)',
-              padding: '4px 10px',
-              borderRadius: '4px',
-              letterSpacing: '0.1em',
-            }}>
-              NISM-202400188719
-            </span>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleBecomePartner}
+              className="font-data"
+              style={{
+                fontSize: '0.75rem',
+                color: '#F59E0B',
+                border: '1px solid rgba(245,158,11,0.4)',
+                padding: '8px 16px',
+                borderRadius: '8px',
+                letterSpacing: '0.05em',
+                background: 'rgba(245,158,11,0.08)',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                whiteSpace: 'nowrap',
+                transition: 'all 0.3s',
+              }}
+              onMouseOver={(e) => { e.currentTarget.style.background = 'rgba(245,158,11,0.15)'; e.currentTarget.style.borderColor = 'rgba(245,158,11,0.6)'; }}
+              onMouseOut={(e) => { e.currentTarget.style.background = 'rgba(245,158,11,0.08)'; e.currentTarget.style.borderColor = 'rgba(245,158,11,0.4)'; }}
+            >
+              <Handshake size={14} /> Become a Partner
+            </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -123,6 +148,29 @@ export default function Navbar() {
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
+      </div>
+
+      {/* Mobile-only Become a Partner banner */}
+      <div className="mobile-partner-banner" style={{
+        display: 'none',
+        justifyContent: 'center',
+        alignItems: 'center',
+        background: 'linear-gradient(90deg, rgba(245,158,11,0.12) 0%, rgba(245,158,11,0.05) 100%)',
+        borderBottom: '1px solid rgba(245,158,11,0.2)',
+        padding: '6px 16px',
+        cursor: 'pointer',
+        gap: '8px',
+        transition: 'all 0.3s',
+      }}
+        onClick={handleBecomePartner}
+        onMouseOver={(e) => e.currentTarget.style.background = 'linear-gradient(90deg, rgba(245,158,11,0.2) 0%, rgba(245,158,11,0.1) 100%)'}
+        onMouseOut={(e) => e.currentTarget.style.background = 'linear-gradient(90deg, rgba(245,158,11,0.12) 0%, rgba(245,158,11,0.05) 100%)'}
+      >
+        <Handshake size={14} style={{ color: '#F59E0B' }} />
+        <span className="font-data" style={{ fontSize: '0.7rem', color: '#F59E0B', letterSpacing: '0.08em' }}>
+          Become a Partner — Join as DSA
+        </span>
+        <span style={{ fontSize: '0.7rem', color: '#F59E0B' }}>→</span>
       </div>
 
       {/* Mobile Drawer */}
@@ -199,19 +247,6 @@ export default function Navbar() {
                 ))}
               </div>
               <div style={{ marginTop: '32px', paddingTop: '32px', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-                <span className="font-data" style={{
-                  display: 'block',
-                  fontSize: '0.625rem',
-                  color: '#10B981',
-                  border: '1px solid rgba(16, 185, 129, 0.3)',
-                  padding: '6px 12px',
-                  borderRadius: '4px',
-                  textAlign: 'center',
-                  marginBottom: '16px',
-                  letterSpacing: '0.1em',
-                }}>
-                  NISM-202400188719
-                </span>
                 <a href="https://wa.me/919878869339?text=Hi!%20I%27m%20interested%20in%20booking%20a%20free%20financial%20consultation." target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)} className="btn-emerald" style={{ width: '100%', textAlign: 'center', display: 'block' }}>
                   Get Free Consultation
                 </a>
@@ -222,6 +257,10 @@ export default function Navbar() {
       </AnimatePresence>
 
       <style>{`
+        .mobile-partner-banner { display: none; }
+        @media (max-width: 1023px) {
+          .mobile-partner-banner { display: flex !important; }
+        }
         @media (min-width: 1024px) {
           .nav-desktop { display: flex !important; align-items: center; gap: 2rem; }
           .nav-right-desktop { display: flex !important; align-items: center; gap: 1rem; }
