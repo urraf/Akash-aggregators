@@ -5,7 +5,7 @@ export default function StockTicker() {
   const items = [...tickerItems, ...tickerItems];
 
   return (
-    <div style={{
+    <div className="stock-ticker-wrapper" style={{
       background: '#0B0D2A',
       borderTop: '1px solid rgba(255,255,255,0.05)',
       borderBottom: '1px solid rgba(255,255,255,0.05)',
@@ -56,6 +56,14 @@ export default function StockTicker() {
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 1023px) {
+          .stock-ticker-wrapper {
+            margin-top: 92px !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }
