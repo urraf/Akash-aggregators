@@ -150,28 +150,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile-only Become a Partner banner */}
-      <div className="mobile-partner-banner" style={{
-        display: 'none',
-        justifyContent: 'center',
-        alignItems: 'center',
-        background: 'linear-gradient(90deg, rgba(245,158,11,0.12) 0%, rgba(245,158,11,0.05) 100%)',
-        borderBottom: '1px solid rgba(245,158,11,0.2)',
-        padding: '6px 16px',
-        cursor: 'pointer',
-        gap: '8px',
-        transition: 'all 0.3s',
-      }}
-        onClick={handleBecomePartner}
-        onMouseOver={(e) => e.currentTarget.style.background = 'linear-gradient(90deg, rgba(245,158,11,0.2) 0%, rgba(245,158,11,0.1) 100%)'}
-        onMouseOut={(e) => e.currentTarget.style.background = 'linear-gradient(90deg, rgba(245,158,11,0.12) 0%, rgba(245,158,11,0.05) 100%)'}
-      >
-        <Handshake size={14} style={{ color: '#F59E0B' }} />
-        <span className="font-data" style={{ fontSize: '0.7rem', color: '#F59E0B', letterSpacing: '0.08em' }}>
-          Become a Partner
-        </span>
-        <span style={{ fontSize: '0.7rem', color: '#F59E0B' }}>→</span>
-      </div>
 
       {/* Mobile Drawer */}
       <AnimatePresence>
@@ -257,10 +235,6 @@ export default function Navbar() {
       </AnimatePresence>
 
       <style>{`
-        .mobile-partner-banner { display: none; }
-        @media (max-width: 1023px) {
-          .mobile-partner-banner { display: flex !important; }
-        }
         @media (min-width: 1024px) {
           .nav-desktop { display: flex !important; align-items: center; gap: 2rem; }
           .nav-right-desktop { display: flex !important; align-items: center; gap: 1rem; }

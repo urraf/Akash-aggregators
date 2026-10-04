@@ -56,14 +56,6 @@ export default function StockTicker() {
           ))}
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 1023px) {
-          .stock-ticker-wrapper {
-            margin-top: 92px !important;
-          }
-        }
-      `}</style>
     </div>
   );
 }
